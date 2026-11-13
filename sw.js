@@ -21,8 +21,8 @@
      passe JAMAIS par lui : les données ont leur propre file d'attente.
 
    Uniquement la réception des notifications et le clic, pour le reste. */
-const BUILD = "20261113114757";
-const A_GARDER = ["./","assets/bilan-document-D9_W6yvS.js","assets/cormorant-italique-latin-C-nL33vl.woff2","assets/cormorant-italique-latin-ext-PWzi_-0y.woff2","assets/cormorant-latin-CUoBjw-S.woff2","assets/cormorant-latin-ext-ltf1AbuM.woff2","assets/couronne-C4nooALe.js","assets/couronne-CAQHt4lQ.css","assets/devise-fon-DX3P0bG4.woff2","assets/html2canvas.esm-QH1iLAAe.js","assets/index.es-BLGO9a18.js","assets/jost-latin-ext-BDUtSsKd.woff2","assets/jost-latin-ObQm3Zd1.woff2","assets/jspdf.es.min-DBlgaSco.js","assets/monograms/mono-argile.png","assets/monograms/mono-copper.png","assets/monograms/mono-indigo-profond.png","assets/monograms/mono-indigo.png","assets/monograms/mono-ivoire.png","assets/monograms/mono-obsidian.png","assets/monograms/mono-or.png","assets/monograms/mono-sable.png","assets/pdf-Dnyy29Sh.js","assets/purify.es-BwoZCkIS.js"];
+const BUILD = "20261113153316";
+const A_GARDER = ["./","assets/bilan-document-CrL54E0A.js","assets/cormorant-italique-latin-C-nL33vl.woff2","assets/cormorant-italique-latin-ext-PWzi_-0y.woff2","assets/cormorant-latin-CUoBjw-S.woff2","assets/cormorant-latin-ext-ltf1AbuM.woff2","assets/couronne-Cfq-glZy.js","assets/couronne-CH7Mfz6C.css","assets/devise-fon-DX3P0bG4.woff2","assets/html2canvas.esm-QH1iLAAe.js","assets/index.es-B7qkQogl.js","assets/jost-latin-ext-BDUtSsKd.woff2","assets/jost-latin-ObQm3Zd1.woff2","assets/jspdf.es.min-CxlZ13e4.js","assets/monograms/mono-argile.png","assets/monograms/mono-copper.png","assets/monograms/mono-indigo-profond.png","assets/monograms/mono-indigo.png","assets/monograms/mono-ivoire.png","assets/monograms/mono-obsidian.png","assets/monograms/mono-or.png","assets/monograms/mono-sable.png","assets/pdf-0HVbU8LB.js","assets/purify.es-BwoZCkIS.js"];
 const ACTIF = !BUILD.startsWith('__');
 const CACHE_APP = `mnd-app-${BUILD}`;
 const CACHE_IMAGES = 'mnd-images';
