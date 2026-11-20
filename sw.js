@@ -21,8 +21,8 @@
      passe JAMAIS par lui : les données ont leur propre file d'attente.
 
    Uniquement la réception des notifications et le clic, pour le reste. */
-const BUILD = "20261119134947";
-const A_GARDER = ["./","assets/bilan-document-DCzp5igD.js","assets/cormorant-italique-latin-C-nL33vl.woff2","assets/cormorant-italique-latin-ext-PWzi_-0y.woff2","assets/cormorant-latin-CUoBjw-S.woff2","assets/cormorant-latin-ext-ltf1AbuM.woff2","assets/couronne-CanvN6QY.js","assets/couronne-CtCzrwFW.css","assets/devise-fon-DX3P0bG4.woff2","assets/html2canvas.esm-QH1iLAAe.js","assets/index.es-BXnOuQrQ.js","assets/jost-latin-ext-BDUtSsKd.woff2","assets/jost-latin-ObQm3Zd1.woff2","assets/jspdf.es.min-DK_4AMLF.js","assets/monograms/mono-argile.png","assets/monograms/mono-copper.png","assets/monograms/mono-indigo-profond.png","assets/monograms/mono-indigo.png","assets/monograms/mono-ivoire.png","assets/monograms/mono-obsidian.png","assets/monograms/mono-or.png","assets/monograms/mono-sable.png","assets/pdf-BgIaTrWR.js","assets/purify.es-BwoZCkIS.js"];
+const BUILD = "20261120071905";
+const A_GARDER = ["./","assets/bilan-document-BNC2Hctl.js","assets/cormorant-italique-latin-C-nL33vl.woff2","assets/cormorant-italique-latin-ext-PWzi_-0y.woff2","assets/cormorant-latin-CUoBjw-S.woff2","assets/cormorant-latin-ext-ltf1AbuM.woff2","assets/couronne-CtCzrwFW.css","assets/couronne-_lro4epM.js","assets/devise-fon-DX3P0bG4.woff2","assets/html2canvas.esm-QH1iLAAe.js","assets/index.es-CraMthDY.js","assets/jost-latin-ext-BDUtSsKd.woff2","assets/jost-latin-ObQm3Zd1.woff2","assets/jspdf.es.min-DU1E_Oig.js","assets/monograms/mono-argile.png","assets/monograms/mono-copper.png","assets/monograms/mono-indigo-profond.png","assets/monograms/mono-indigo.png","assets/monograms/mono-ivoire.png","assets/monograms/mono-obsidian.png","assets/monograms/mono-or.png","assets/monograms/mono-sable.png","assets/pdf-DvYmo_md.js","assets/purify.es-BwoZCkIS.js"];
 const ACTIF = !BUILD.startsWith('__');
 const CACHE_APP = `mnd-app-${BUILD}`;
 const CACHE_IMAGES = 'mnd-images';
@@ -114,6 +114,25 @@ self.addEventListener('fetch', (event) => {
       const r = await fetch(req);
       if (r.ok) { const c = await caches.open(CACHE_APP); void c.put(req, r.clone()); }
       return r;
+    })());
+    return;
+  }
+
+  /* LE PLAN POUR VENIR, LE RÉSEAU D'ABORD (20 novembre 2026). Il part chez les
+     clientes : gardé comme les autres images, le plan d'avant une correction
+     (l'adresse du 20 novembre) repartait une fois de plus de chaque appareil.
+     En ligne, toujours le dernier, sans le cache du navigateur ; sans réseau,
+     celui qu'on a. */
+  if (url.pathname.includes('/assets/itineraire/')) {
+    event.respondWith((async () => {
+      const c = await caches.open(CACHE_IMAGES);
+      try {
+        const r = await avecDelai(fetch(req, { cache: 'no-cache' }), DELAI_PAGE_MS);
+        if (r.ok) { void c.put(req, r.clone()); return r; }
+        return (await c.match(req)) || r;
+      } catch (_e) {
+        return (await c.match(req)) || Response.error();
+      }
     })());
     return;
   }
